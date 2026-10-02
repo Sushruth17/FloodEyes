@@ -1,0 +1,7 @@
+# USD per 1M tokens. Image tokens are counted as input; thinking tokens are billed as output.
+# Checked 2026-10-02 from public pricing summaries. Re-verify on the official pricing page before
+# quoting cost numbers in the deck. null = unknown (cost will be reported as missing).
+gemini-3.8-flash:        { input: 0.75, output: 3.75 }   # introductory rate until 2026-12-31
+gemini-3.5-flash:        { input: 1.50, output: 9.00 }
+gemini-3.5-flash-lite:   { input: null, output: null }
+gemini-3.1-pro-preview:  { input: 2.00, output: 12.00 }

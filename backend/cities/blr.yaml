@@ -1,0 +1,51 @@
+# Bengaluru city configuration.
+# Reference heights are typical values for vehicles and people common on Indian streets.
+# `verified: false` means a human has not yet checked the value against a spec sheet or a tape
+# measure. Verify before the go/no-go run and flip the flag.
+
+id: blr
+name: Bengaluru
+timezone: Asia/Kolkata
+center: { lat: 12.9716, lng: 77.5946 }
+bbox: { south: 12.80, west: 77.40, north: 13.15, east: 77.80 }
+languages: [en, kn, hi, ta]
+decay_tau_min: 45
+
+city_context: >-
+  Bengaluru, India. Common vehicles: hatchback and sedan cars, SUVs, Honda Activa-style scooters,
+  commuter motorcycles, three-wheeler auto-rickshaws, BMTC city buses, delivery vans, tempo trucks.
+  Footpath kerbs are often 15-30 cm high. Underpasses and junctions flood first.
+
+# Heights in centimetres, measured from the road surface.
+reference_heights:
+  - { object: "car tyre, hatchback/sedan (top of tyre)", height_cm: 60, range_cm: [56, 66], verified: false }
+  - { object: "car wheel hub centre", height_cm: 30, range_cm: [28, 33], verified: false }
+  - { object: "car front bumper, bottom edge", height_cm: 22, range_cm: [17, 28], verified: false }
+  - { object: "car door bottom edge / sill", height_cm: 35, range_cm: [30, 42], verified: false }
+  - { object: "car headlight centre", height_cm: 70, range_cm: [60, 80], verified: false }
+  - { object: "SUV tyre (top of tyre)", height_cm: 72, range_cm: [68, 78], verified: false }
+  - { object: "scooter wheel (top of tyre)", height_cm: 46, range_cm: [42, 50], verified: false }
+  - { object: "scooter floorboard", height_cm: 25, range_cm: [20, 30], verified: false }
+  - { object: "scooter / motorcycle seat top", height_cm: 78, range_cm: [74, 82], verified: false }
+  - { object: "motorcycle wheel (top of tyre)", height_cm: 62, range_cm: [58, 66], verified: false }
+  - { object: "auto-rickshaw wheel (top of tyre)", height_cm: 48, range_cm: [44, 52], verified: false }
+  - { object: "auto-rickshaw cabin floor", height_cm: 42, range_cm: [36, 48], verified: false }
+  - { object: "city bus wheel (top of tyre)", height_cm: 102, range_cm: [96, 108], verified: false }
+  - { object: "city bus first entry step", height_cm: 40, range_cm: [32, 48], verified: false }
+  - { object: "bicycle wheel (top of tyre)", height_cm: 68, range_cm: [64, 72], verified: false }
+  - { object: "footpath kerb top", height_cm: 20, range_cm: [15, 30], verified: false }
+  - { object: "adult ankle", height_cm: 10, range_cm: [8, 12], verified: false }
+  - { object: "adult mid-shin", height_cm: 30, range_cm: [25, 35], verified: false }
+  - { object: "adult knee", height_cm: 50, range_cm: [45, 55], verified: false }
+  - { object: "adult mid-thigh", height_cm: 70, range_cm: [62, 78], verified: false }
+  - { object: "adult waist", height_cm: 100, range_cm: [92, 110], verified: false }
+  - { object: "adult chest", height_cm: 130, range_cm: [120, 140], verified: false }
+  - { object: "standard traffic cone", height_cm: 75, range_cm: [70, 76], verified: false }
+
+# Depth band -> passability for each vehicle class (still water).
+# Moving water shifts the band up by one before lookup.
+passability:
+  lt15:   { two_wheeler: caution, car: "yes",   ambulance: "yes",   bus: "yes" }
+  15to30: { two_wheeler: "no",    car: caution, ambulance: caution, bus: "yes" }
+  30to60: { two_wheeler: "no",    car: "no",    ambulance: "no",    bus: caution }
+  gt60:   { two_wheeler: "no",    car: "no",    ambulance: "no",    bus: "no" }
